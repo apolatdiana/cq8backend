@@ -3,7 +3,7 @@ const router = express.Router()
 const studentSchema = require('../model/studentSchema')
 
 
-
+// post router
 router.post('/registerStudent', async(req, res) => {
     const data = req.body 
     try {
@@ -17,6 +17,15 @@ router.post('/registerStudent', async(req, res) => {
     }
 });
   
-
+// get router
+router.get('/registerStudent', async (req, res) => {
+    const data = req.body
+    try {
+        const student = await studentSchema.find(data)
+        res.status(200).send(student)
+    } catch (error) {
+        res.send(error).status(400)
+    }
+})
 
 module.exports = router;
